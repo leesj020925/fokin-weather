@@ -10,6 +10,7 @@ const API_KEY = "df0e52851a999f532601b4c538f11288";
 export default class App extends React.Component {
   state = {
     isLoading: true,
+    condition: "Clear",
   };
   getWeather = async(latitude, longitude) => {
     const { 
@@ -41,12 +42,19 @@ export default class App extends React.Component {
     this.getLocation();
   }
 
+  _changePicker = (title) => {
+    this.setState({condition: title});
+  }
+
   render(){
     const {
       isLoading,
       temp,
       condition
     } = this.state;
-    return isLoading ? <Loading /> : <Weather temp={Math.round(temp)} condition={condition} />;
+    const {
+      _changePicker
+    } = this;
+    return isLoading ? <Loading /> : <Weather temp={Math.round(temp)} condition={condition} _changePicker={_changePicker} />;
   }
 }

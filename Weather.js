@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, StatusBar } from "react-native";
 import PropTypes from "prop-types";
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { LinearGradient } from 'expo-linear-gradient';
+import { Picker } from '@react-native-picker/picker';
 
 const weatherOptions = {
     Haze: {
@@ -11,7 +12,7 @@ const weatherOptions = {
         title: "Haze",
         subtitle: "Just Don't Go Outside."
     },
-    Thunderstorm: {
+    ThunderStorm: {
         iconName: "weather-lightning",
         gradient: ["#333333", "#e9d362"],
         title: "ThunderStorm",
@@ -31,19 +32,20 @@ const weatherOptions = {
     },
     Snow: {
         iconName: "weather-snowy",
-        gradient: ["d4d3dd", "#efefbb"],
+        gradient: ["#d4d3dd", "#efefbb"],
         title: "Snow",
         subtitle: "Sleigh bells ring, are you listening?"
     },
     Atmosphere: {
         iconName: "weather-sunny",
         gradient: ["#c6ffdd", "#fbd786", "#f7797d"],
-        title: "...",
+        title: "Atmosphere",
         subtitle: "How are you Today?"
     },
     Clear: {
         iconName: "weather-sunny",
-        gradient: ["#c6ffdd", "#fbd786", "#f7797d"],
+        //gradient: ["#c6ffdd", "#fbd786", "#f7797d"],
+        gradient: ["#db36a4", "#f7ff00"],
         title: "Clear",
         subtitle: "Lovely Weather! Let's go picnic!"
     },
@@ -61,13 +63,13 @@ const weatherOptions = {
     },
     Dust: {
         iconName: "weather-tornado",
-        gradient: ["#f09819", "edde5d"],
+        gradient: ["#f09819", "#edde5d"],
         title: "Dust",
         subtitle: "Don't take off your mask."
     }
 }
 
-export default function Weather({temp, condition}){
+export default function Weather({temp, condition, _changePicker}){
     return (
             <LinearGradient
                 colors={!!weatherOptions[condition] ? weatherOptions[condition].gradient : ["#f5af19", "#f12711"]}
@@ -85,13 +87,30 @@ export default function Weather({temp, condition}){
                 <View style={{ ...styles.halfContainer, ...styles.textContainer }} >
                     <Text style={styles.title}>{!!weatherOptions[condition] ? weatherOptions[condition].title : "Good Day!"}</Text>
                     <Text style={styles.subtitle}>{!!weatherOptions[condition] ? weatherOptions[condition].subtitle : "How Are You?"}</Text>
+                    <Picker
+                        selectedValue={!!condition ? condition : "Clear"}
+                        style={{height: 50, width: 200}}
+                        onValueChange={ 
+                            (itemValue, itemIndex) => {
+                                //console.log(itemValue);
+                                _changePicker(itemValue);
+                            }
+                        }
+                    >
+                        {
+                            Object.keys(weatherOptions).map( (v, idx) => {
+                                return <Picker.Item key={idx+1} label={v} value={v} />
+                            })
+                        }
+                        
+                    </Picker>
                 </View>
             </LinearGradient>
     );
 }
 Weather.propTypes = {
     temp: PropTypes.number.isRequired,
-    condition: PropTypes.oneOf(["Thunderstorm", "Drizzle", "Rain", "Snow", "Atmosphere", "Clear", "Clouds", "Haze","Mist","Dust"]).isRequired,
+    condition: PropTypes.oneOf(["ThunderStorm", "Drizzle", "Rain", "Snow", "Atmosphere", "Clear", "Clouds", "Haze","Mist","Dust"]).isRequired,
 }
 
 const styles = StyleSheet.create({

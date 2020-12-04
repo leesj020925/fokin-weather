@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-picker/picker": "^1.9.4",
     "axios": "^0.21.0",
     "ee-first": "^1.1.1",
     "expo": "~39.0.2",
