@@ -83,8 +83,8 @@ export default function Weather({temp, condition}){
                     <Text style={styles.temp}>{temp}°</Text>
                 </View>
                 <View style={{ ...styles.halfContainer, ...styles.textContainer }} >
-                    <Text style={styles.title}>{weatherOptions[condition].title}</Text>
-                    <Text style={styles.subtitle}>{weatherOptions[condition].subtitle}</Text>
+                    <Text style={styles.title}>{!!weatherOptions[condition] ? weatherOptions[condition].title : "Good Day!"}</Text>
+                    <Text style={styles.subtitle}>{!!weatherOptions[condition] ? weatherOptions[condition].subtitle : "How Are You?"}</Text>
                 </View>
             </LinearGradient>
     );
