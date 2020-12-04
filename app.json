@@ -28,6 +28,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": ""
+    "description": "Simple Weather App",
+    "githubUrl": "https://github.com/leesj020925/fokin-weather.git"
   }
 }
