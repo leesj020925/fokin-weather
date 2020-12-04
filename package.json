@@ -8,8 +8,12 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "axios": "^0.21.0",
+    "ee-first": "^1.1.1",
     "expo": "~39.0.2",
     "expo-status-bar": "~1.0.2",
+    "path-exists": "^4.0.0",
+    "prop-types": "^15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz",
@@ -18,5 +22,10 @@
   "devDependencies": {
     "@babel/core": "~7.9.0"
   },
-  "private": true
+  "private": true,
+  "name": "fokin-weather",
+  "version": "1.0.0",
+  "repository": "https://github.com/leesj020925/fokin-weather",
+  "author": "leesj020925 <leesj020925@naver.com>",
+  "license": "MIT"
 }
